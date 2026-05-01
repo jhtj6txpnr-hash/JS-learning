@@ -24,6 +24,20 @@ let conceptBtn = document.getElementById("conceptBtn");
 let resetBtn = document.getElementById("resetBtn");
 let history = [];
 
+//LocalStorage speichern
+function saveData() {
+    localStorage.setItem("focus", focus);
+}
+
+// localStorage laden
+function loadData() {
+    let savedFocus = localStorage.getItem("focus");
+
+    if (savedFocus !== null ) {
+        focus = Number(savedFocus);
+    }
+}
+
 // renderstats funktion
 function renderstats() {
     let total = focus + bugs + concepts;
@@ -95,6 +109,7 @@ function renderstats() {
 focusBtn.addEventListener("click", function(e) {
     console.log(e.target);
     focus = focus +1;
+    saveData();
     history.push("+1 focus");
     renderstats();
 })
@@ -145,4 +160,5 @@ document.addEventListener("keydown", function(e) {
         renderstats();
     }
 })
+loadData();
 renderstats();
