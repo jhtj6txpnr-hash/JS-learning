@@ -14,7 +14,6 @@ let statusView = document.getElementById("statusView");
 let progressBar = document.getElementById("progressBar");
 let goalView = document.getElementById("goalView");
 let levelView = document.getElementById("levelView");
-let historyList = document.getElementById("historyList");
 let goalInput = document.getElementById("goalInput");
 
 
@@ -25,7 +24,6 @@ let bugBtn = document.getElementById("bugBtn");
 let conceptBtn = document.getElementById("conceptBtn");
 let resetBtn = document.getElementById("resetBtn");
 let setGoalBtn = document.getElementById("setGoalBtn");
-let history = [];
 
 // LocalStorage speichern
 function saveData() {
@@ -33,7 +31,6 @@ function saveData() {
     localStorage.setItem("bugs", bugs);
     localStorage.setItem("concepts", concepts);
     localStorage.setItem("goal", goal);
-    localStorage.setItem("history", JSON.stringify(history));
 }
 
 // localStorage laden
@@ -41,7 +38,7 @@ function loadData() {
     let savedFocus = localStorage.getItem("focus");
     let savedBugs = localStorage.getItem("bugs");
     let savedConcepts = localStorage.getItem("concepts");
-    let savedHistory = localStorage.getItem("history");
+
     let savedGoal = localStorage.getItem("goal");
 
     if ( savedGoal !== null ) {
@@ -57,9 +54,6 @@ function loadData() {
     if ( savedConcepts !== null ) {
         concepts = Number(savedConcepts);
     }
-    if (savedHistory !== null ) {
-        history = JSON.parse(savedHistory);
-    }
 }
 
 // renderstats funktion
@@ -71,12 +65,7 @@ function renderstats() {
     conceptView.textContent = "Concepts: " + concepts;
     totalView.textContent = "Total : " + total;
     goalView.textContent = "ziel:" + total + " / " + goal;
-    historyList.innerHTML = "";
-    for (let i = Math.max (0, history.length - 10); i < history.length; i++) {
-        let li = document.createElement("li");
-        li.textContent = history[i];
-        historyList.appendChild(li);
-    }
+    
     
     // Status check
     if ( total === 0 ) {
@@ -92,6 +81,7 @@ function renderstats() {
     let progress = ( total / goal ) * 100;
     if (progress > 100 ) {
         progress = 100
+        statusView.textContent = "Ziel erreicht!";
     }
     progressBar.style.width = progress + "%";
 
@@ -133,7 +123,6 @@ function renderstats() {
 focusBtn.addEventListener("click", function(e) {
     console.log(e.target);
     focus = focus +1;
-    history.push("+1 Focus");
     saveData();
     renderstats();
 })
@@ -142,7 +131,6 @@ focusBtn.addEventListener("click", function(e) {
 bugBtn.addEventListener("click", function(e) {
     console.log(e.target);
     bugs = bugs +1;
-    history.push("+1 Bugs");
     saveData();
     renderstats();
 })
@@ -151,7 +139,6 @@ bugBtn.addEventListener("click", function(e) {
 conceptBtn.addEventListener("click", function(e) {
     console.log(e.target);
     concepts = concepts + 1;
-    history.push("+1 Concepts");
     saveData();
     renderstats();
 })
@@ -162,7 +149,6 @@ resetBtn.addEventListener("click", function(e) {
     concepts = 0;
     bugs = 0;
     focus = 0;
-    history = [];
     
     saveData();
     renderstats();
@@ -177,6 +163,5 @@ setGoalBtn.addEventListener("click", function() {
         renderstats();
     }
 });
-
 loadData();
 renderstats();
