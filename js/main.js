@@ -24,17 +24,32 @@ let conceptBtn = document.getElementById("conceptBtn");
 let resetBtn = document.getElementById("resetBtn");
 let history = [];
 
-//LocalStorage speichern
+// LocalStorage speichern
 function saveData() {
     localStorage.setItem("focus", focus);
+    localStorage.setItem("bugs", bugs);
+    localStorage.setItem("concepts", concepts);
+    localStorage.setItem("history", JSON.stringify(history));
 }
 
 // localStorage laden
 function loadData() {
     let savedFocus = localStorage.getItem("focus");
+    let savedBugs = localStorage.getItem("bugs");
+    let savedConcepts = localStorage.getItem("concepts");
+    let savedHistory = localStorage.getItem("history");
 
     if (savedFocus !== null ) {
         focus = Number(savedFocus);
+    }
+    if ( savedBugs !== null ) {
+        bugs = Number(savedBugs);
+    }
+    if ( savedConcepts !== null ) {
+        concepts = Number(savedConcepts);
+    }
+    if (savedHistory !== null ) {
+        history = JSON.parse(savedHistory);
     }
 }
 
@@ -109,8 +124,8 @@ function renderstats() {
 focusBtn.addEventListener("click", function(e) {
     console.log(e.target);
     focus = focus +1;
-    saveData();
     history.push("+1 focus");
+    saveData();
     renderstats();
 })
 
@@ -119,6 +134,7 @@ bugBtn.addEventListener("click", function(e) {
     console.log(e.target);
     bugs = bugs +1;
     history.push("+1 bugs");
+    saveData();
     renderstats();
 })
 
@@ -127,6 +143,7 @@ conceptBtn.addEventListener("click", function(e) {
     console.log(e.target);
     concepts = concepts + 1;
     history.push("+1 concepts");
+    saveData();
     renderstats();
 })
 
@@ -138,6 +155,7 @@ resetBtn.addEventListener("click", function(e) {
     focus = 0;
     history = [];
     
+    saveData();
     renderstats();
 })
 
