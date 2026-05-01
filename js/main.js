@@ -14,12 +14,15 @@ let statusView = document.getElementById("statusView");
 let progressBar = document.getElementById("progressBar");
 let goalView = document.getElementById("goalView");
 let levelView = document.getElementById("levelView");
+let historyList = document.getElementById("historyList");
+
 
 // Buttons
 let focusBtn = document.getElementById("focusBtn");
 let bugBtn = document.getElementById("bugBtn");
 let conceptBtn = document.getElementById("conceptBtn");
 let resetBtn = document.getElementById("resetBtn");
+let history = [];
 
 // renderstats funktion
 function renderstats() {
@@ -30,6 +33,12 @@ function renderstats() {
     conceptView.textContent = "Concepts: " + concepts;
     totalView.textContent = "Total : " + total;
     goalView.textContent = "ziel:" + total + " / " + goal;
+    historyList.innerHTML = "";
+    for (let i = 0; i < history.length; i++ ) {
+        let li = document.createElement("li");
+        li.textContent = history[i];
+        historyList.appendChild(li);
+    }
     
     // Status check
     if ( total === 0 ) {
@@ -86,6 +95,7 @@ function renderstats() {
 focusBtn.addEventListener("click", function(e) {
     console.log(e.target);
     focus = focus +1;
+    history.push("+1 focus");
     renderstats();
 })
 
@@ -93,6 +103,7 @@ focusBtn.addEventListener("click", function(e) {
 bugBtn.addEventListener("click", function(e) {
     console.log(e.target);
     bugs = bugs +1;
+    history.push("+1 bugs");
     renderstats();
 })
 
@@ -100,6 +111,7 @@ bugBtn.addEventListener("click", function(e) {
 conceptBtn.addEventListener("click", function(e) {
     console.log(e.target);
     concepts = concepts + 1;
+    history.push("+1 concepts");
     renderstats();
 })
 
@@ -109,6 +121,7 @@ resetBtn.addEventListener("click", function(e) {
     concepts = 0;
     bugs = 0;
     focus = 0;
+    history = [];
     
     renderstats();
 })
