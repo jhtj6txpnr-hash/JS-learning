@@ -162,11 +162,14 @@ resetBtn.addEventListener("click", function(e) {
 // Goal eingabe event
 setGoalBtn.addEventListener("click", function() {
     let newGoal = Number(goalInput.value);
-    if ( newGoal > 0 ) {
-        goal = newGoal;
-        saveData();
-        renderstats();
+    if ( newGoal <= 0 || isNaN(newGoal) ) {
+        return;
+    } else {
+        goal = newGoal
     }
+    loadData();
+    renderstats();
+    
 });
 loadData();
 renderstats();
