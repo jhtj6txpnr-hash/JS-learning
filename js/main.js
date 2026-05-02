@@ -4,6 +4,7 @@ let focus = 0;
 let bugs = 0;
 let concepts = 0;
 let goal = 10;
+let body = document.body;
 
 // Views
 let focusView = document.getElementById("focusView");
@@ -25,10 +26,13 @@ let conceptBtn = document.getElementById("conceptBtn");
 let resetBtn = document.getElementById("resetBtn");
 let setGoalBtn = document.getElementById("setGoalBtn");
 let themeBtn = document.getElementById("toggleTheme");
+let settingsBtn = document.getElementById("settingsBtn");
+let settingsPanel = document.getElementById("settingsPanel");
+let lightBtn = document.getElementById("lightBtn");
+let darkBtn = document.getElementById("darkBtn");
+let glowBtn = document.getElementById("glowBtn");
 
-themeBtn.addEventListener("click", function() {
-   document.body.classList.toggle("light");
-})
+
 
 // LocalStorage speichern
 function saveData() {
@@ -176,6 +180,23 @@ setGoalBtn.addEventListener("click", function() {
     renderstats();
     
 });
+
+// Toogle zum verstecken des settings panel
+settingsBtn.addEventListener("click", function() {
+    settingsPanel.classList.toggle("hidden");
+})
+
+// events für die Buttons innerhalb des Setting panels
+lightBtn.addEventListener("click", function() {
+    body.classList.add("light");
+})
+darkBtn.addEventListener("click", function() {
+    body.classList.remove("light");
+})
+ 
+glowBtn.addEventListener("click", function() {
+    body.classList.toggle("no-glow");
+})
 
 
 loadData();
