@@ -15,6 +15,7 @@ loginBtn.addEventListener("click", function() {
    if ( usernameInput.value === "NomicGDev" && passwordInput.value === "999" ) {
     loginMessage.style.color = "LimeGreen";
     loginMessage.textContent = " Login Erfolgreich!"
+    window.location.href = "/html/index.html";
    } else if ( usernameInput.value === "" || passwordInput.value === "" ) {
     loginMessage.textContent = "Bitte alles ausfüllen!";
     loginMessage.style.color = "orange";
