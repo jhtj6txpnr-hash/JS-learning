@@ -24,6 +24,11 @@ let bugBtn = document.getElementById("bugBtn");
 let conceptBtn = document.getElementById("conceptBtn");
 let resetBtn = document.getElementById("resetBtn");
 let setGoalBtn = document.getElementById("setGoalBtn");
+let themeBtn = document.getElementById("toggleTheme");
+
+toggleTheme.addEventListener("click", function() {
+   document.body.classList.toggle("light");
+})
 
 // LocalStorage speichern
 function saveData() {
