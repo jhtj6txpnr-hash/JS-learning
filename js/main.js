@@ -26,7 +26,7 @@ let resetBtn = document.getElementById("resetBtn");
 let setGoalBtn = document.getElementById("setGoalBtn");
 let themeBtn = document.getElementById("toggleTheme");
 
-toggleTheme.addEventListener("click", function() {
+themeBtn.addEventListener("click", function() {
    document.body.classList.toggle("light");
 })
 
@@ -84,7 +84,7 @@ function renderstats() {
     }
 
     let progress = ( total / goal ) * 100;
-    if (progress > 100 ) {
+    if (progress >= 100 ) {
         progress = 100
         statusView.textContent = "Ziel erreicht!";
     }
@@ -121,6 +121,11 @@ function renderstats() {
         focusBtn.disabled = false;
         bugBtn.disabled = false;
         conceptBtn.disabled = false;
+    }
+
+    // Ziel erreicht check
+    if( total >= goal ) {
+        levelView.textContent = "Ziel erreicht brudi🔥"
     }
 } 
 
@@ -167,9 +172,11 @@ setGoalBtn.addEventListener("click", function() {
     } else {
         goal = newGoal
     }
-    loadData();
+    saveData();
     renderstats();
     
 });
+
+
 loadData();
 renderstats();
