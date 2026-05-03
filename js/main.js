@@ -1,5 +1,5 @@
 if (localStorage.getItem("loggedIn") !== "true") {
-    windows.location.href = "/html/login.html";
+    window.location.href = "/html/login.html";
 }
 console.log("dashboard loaded");
 
@@ -34,6 +34,7 @@ let settingsPanel = document.getElementById("settingsPanel");
 let lightBtn = document.getElementById("lightBtn");
 let darkBtn = document.getElementById("darkBtn");
 let glowBtn = document.getElementById("glowBtn");
+let logOutBtn = document.getElementById("logOutBtn");
 
 
 
@@ -201,6 +202,12 @@ glowBtn.addEventListener("click", function() {
     body.classList.toggle("no-glow");
 })
 
+
+// Event für logOut button
+logOutBtn.addEventListener("click", function() {
+    localStorage.removeItem("loggedIn", "true");
+    window.location.href = "/html/login.html";
+})
 
 loadData();
 renderstats();

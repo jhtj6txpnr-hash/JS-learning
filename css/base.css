@@ -123,3 +123,21 @@ settingsBtn:hover {
 .hidden {
   display: none;
 }
+
+#logoutBtn {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 70, 70, 0.35);
+  background: linear-gradient(135deg, #2a1010, #3a1325);
+  color: #f0f3ff;
+  box-shadow: 0 0 14px rgba(255, 70, 70, 0.35);
+}
+
+#logoutBtn:hover {
+  box-shadow:
+    0 0 20px rgba(255, 70, 70, 0.65),
+    0 0 10px rgba(120, 80, 255, 0.25);
+}
