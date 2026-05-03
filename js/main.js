@@ -1,3 +1,6 @@
+if (localStorage.getItem("loggedIn") !== "true") {
+    windows.location.href = "/html/login.html";
+}
 console.log("dashboard loaded");
 
 let focus = 0;
