@@ -13,6 +13,7 @@ loginBtn.addEventListener("click", function() {
 
    // Check ob leere eingaben getätigt werden
    if ( usernameInput.value === "NomicGDev" && passwordInput.value === "999" ) {
+      localStorage.setItem("loggedIn", "true");
     loginMessage.style.color = "LimeGreen";
     loginMessage.textContent = " Login Erfolgreich!"
     window.location.href = "/html/index.html";
