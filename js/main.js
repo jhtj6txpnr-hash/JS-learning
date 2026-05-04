@@ -205,7 +205,7 @@ glowBtn.addEventListener("click", function() {
 
 // Event für logOut button
 logOutBtn.addEventListener("click", function() {
-    localStorage.removeItem("loggedIn", "true");
+    localStorage.removeItem("loggedIn");
     window.location.href = "/html/login.html";
 })
 
